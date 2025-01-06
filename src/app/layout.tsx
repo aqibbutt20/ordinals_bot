@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
 import ContextWrapper from '@/components/ContextWrapper/Index';
+import Header from '@/components/shared/Header/Index';
 import { ToastContainer } from 'react-toastify';
 
 const geistSans = Geist({
@@ -30,6 +31,7 @@ export default function RootLayout({
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <ContextWrapper>
                     <ToastContainer autoClose={2000} />
+                    <Header />
                     <div className='container mx-auto'>{children}</div>
                 </ContextWrapper>
             </body>
