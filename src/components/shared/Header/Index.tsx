@@ -7,7 +7,9 @@ import { toast } from 'react-toastify';
 import Link from 'next/link';
 
 const Header = () => {
+    // Fetch blockchain data (current block height and BTC price)
     const { data, isLoading, isError, error } = useBlockchain();
+
     useEffect(() => {
         if (isError && error) {
             toast.error(error.message);
@@ -17,8 +19,11 @@ const Header = () => {
     return (
         <header className='bg-gray-900 text-white shadow-md sticky top-0 w-full'>
             <div className='container mx-auto flex justify-between items-center p-4'>
-                <Link href={'/'} className='text-2xl font-bold text-yellow-400'>OrdinalsBot</Link>
+                <Link href={'/'} className='text-2xl font-bold text-yellow-400'>
+                    OrdinalsBot
+                </Link>
 
+                {/* Display blockchain data if loading is complete */}
                 {!isLoading && (
                     <div className='hidden md:flex space-x-6'>
                         <div className='text-sm'>
@@ -30,9 +35,11 @@ const Header = () => {
                     </div>
                 )}
 
+                {/* Wallet connection component */}
                 <WalletConnector />
             </div>
 
+            {/* Responsive blockchain data display for smaller screens */}
             <div className='md:hidden bg-gray-800 text-center p-2 text-sm space-y-1'>
                 <div>
                     <span className='font-medium'>Current Block:</span> #{data?.blockHeight}

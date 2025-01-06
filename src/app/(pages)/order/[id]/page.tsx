@@ -4,19 +4,24 @@ import React from 'react';
 const API_BASE = process.env.ORDINALSBOT_API_BASE;
 const API_KEY = process.env.ORDINALSBOT_API_KEY;
 
-type pageProps = {
+type PageProps = {
     params: {
         id: string;
     };
 };
 
-const Page: NextPage<pageProps> = async ({ params }) => {
+/**
+ * Page Component
+ * Fetches and displays order details using the provided order ID (SSR).
+ */
+const Page: NextPage<PageProps> = async ({ params }) => {
     const { id } = await params;
 
     let orderData: any;
     let errorMessage = '';
 
     try {
+        // Fetch order details from the OrdinalsBot API
         const res = await fetch(`${API_BASE}/order?id=${id}`, {
             headers: {
                 'x-api-key': API_KEY ?? '',
@@ -24,20 +29,24 @@ const Page: NextPage<pageProps> = async ({ params }) => {
             cache: 'no-store',
         });
 
+        // Throw an error if the API response is not successful
         if (!res.ok) {
             throw new Error(`Failed to fetch order. HTTP status: ${res.status}`);
         }
 
         orderData = await res.json();
 
+        // Check if the API returned an error in the response
         if (orderData.status === 'error') {
             throw new Error(orderData.error || 'Invalid order data received from the API.');
         }
     } catch (error: any) {
         console.error('Error fetching order details:', error.message);
+
         errorMessage = error.message;
     }
 
+    // If an error occurred, render an error page
     if (errorMessage) {
         return (
             <div className='min-h-screen text-white flex items-center justify-center p-8'>
@@ -49,6 +58,7 @@ const Page: NextPage<pageProps> = async ({ params }) => {
         );
     }
 
+    // Render the order details if the data is successfully fetched
     return (
         <div className='min-h-screen text-white flex items-center justify-center p-8'>
             <div className='max-w-4xl w-full bg-gray-800 p-8 rounded-md shadow-lg break-all'>

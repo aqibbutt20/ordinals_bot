@@ -1,13 +1,9 @@
 import Link from 'next/link';
 
-export default function Home() {
-    const orderIds = [
-        '39c9bdcf-6459-4509-b7a6-7138ac826378',
-        '7d138fda-001c-4421-b1df-cbb5b8571d20',
-        '8bb1d29e-171a-4a63-9b38-c5ee3e7fe2e1',
-        '800fa3c4-7004-43e8-823e-928a2e5c30a0',
-    ];
+// Array of predefined order IDs to render as links
+const orderIds = ['39c9bdcf-6459-4509-b7a6-7138ac826378', '7d138fda-001c-4421-b1df-cbb5b8571d20', '8bb1d29e-171a-4a63-9b38-c5ee3e7fe2e1', '800fa3c4-7004-43e8-823e-928a2e5c30a0'];
 
+export default function Home() {
     return (
         <div className='min-h-screen text-white flex items-center justify-center'>
             <div className='text-center space-y-8'>

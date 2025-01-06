@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     title: 'OrdinalsBot',
-    description: 'OrdinalsBot test assesment',
+    description: 'OrdinalsBot test assessment',
 };
 
 export default function RootLayout({
@@ -30,9 +30,12 @@ export default function RootLayout({
         <html lang='en'>
             <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                 <ContextWrapper>
+                    {/* Provide global context using ContextWrapper */}
                     <ToastContainer autoClose={2000} />
                     <Header />
-                    <div className='container mx-auto'>{children}</div>
+                    <div className='container mx-auto'>
+                        {children}
+                    </div>
                 </ContextWrapper>
             </body>
         </html>

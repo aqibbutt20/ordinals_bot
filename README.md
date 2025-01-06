@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OrdinalsBot Frontend Project
 
-## Getting Started
+This project is a frontend application built with **Next.js** (App Router) and **TypeScript** for interacting with the **OrdinalsBot API** and **Blockchain**. It displays user-specific order details, token balances, and provides insights into current Bitcoin-related data.
 
-First, run the development server:
+## Key Features
+- **Dynamic Order Details Page:** View relevant information for specific orders.
+- **BRC-20 Token Balance Display:** Fetch and display token balances.
+- **Current BTC Block & Price:** Display current data.
+- **API Integration:** Seamless interaction with backend APIs.
+- **Wallet Connection Support:** Ability to connect user wallets using Lasereyes for personalized experience.
+  - **Wallet Existance:** Ability to detect installed wallets available to connect.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Project Setup
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clone the repository:
+   ```bash
+   git clone <repo-url>
+   cd ordinals_bot
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Create an `.env` file and add necessary variables as in `example.env`.
 
-## Learn More
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## API Documentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### BRC-20 Token Balance API
+- **Endpoint:** `/api/brc20Balance`
+- **Method:** `GET`
+- **Query Parameters:**
+  - `address` (string, required): Wallet address to fetch the balance.
+  - `ticker` (string, required): Brc20 ticker.
+- **Response Example:**
+  ```json
+  {
+    "overall_balance": "123",
+    "available_balance": "123",
+    "block_height": 878084,
+    "tick": "trio"
+  }
+  ```
+- **Error Response Example:**
+  ```json
+  {
+    "error": "Address and ticker are required"
+  }
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Pages Routes
+- `/`: Home Page
+- `/order/[id]`: Dynamic route to display order details.
 
-## Deploy on Vercel
+## API Integration Documentation
+Refer to [OrdinalsBot API Docs](https://docs.ordinalsbot.com).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built with ❤️
