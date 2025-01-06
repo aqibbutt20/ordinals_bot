@@ -5,9 +5,9 @@ const API_BASE = process.env.ORDINALSBOT_API_BASE;
 const API_KEY = process.env.ORDINALSBOT_API_KEY;
 
 type PageProps = {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 };
 
 /**
